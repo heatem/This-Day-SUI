@@ -1,5 +1,5 @@
 //
-//  Image.swift
+//  UnsplashImage.swift
 //  This Day
 //
 //  Created by Heather Mason on 7/25/25.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Image: Decodable {
+struct UnsplashImage: Decodable {
     let urls: Urls
     let user: User
     
