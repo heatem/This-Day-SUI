@@ -12,9 +12,11 @@ struct FocusView: View {
     
     var body: some View {
         HStack {
-            Button("Completed", systemImage: toDo ? "square" : "checkmark.square") {
-                $toDo.toggle
+            Button("", systemImage: toDo ? "square" : "checkmark.square") {
+//                $toDo.toggle
             }
+            .foregroundColor(.black)
+            .font(.title)
 //            Image(systemName: "checkmark.square")
 //            Image(systemName: "square")
             Text("Placeholder")

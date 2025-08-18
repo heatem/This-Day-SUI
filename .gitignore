@@ -13,6 +13,11 @@ xcuserdata/
 *.dSYM.zip
 *.dSYM
 
+## Keys
+This\ Day/Keys.swift
+/This\ Day/Keys.swift
+*/Keys.swift
+
 ## Playgrounds
 timeline.xctimeline
 playground.xcworkspace
