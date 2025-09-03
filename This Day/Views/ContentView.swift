@@ -10,10 +10,11 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         ZStack {
-            Image("LandsEnd")
-                .resizable()
-                .scaledToFill()
-                .ignoresSafeArea()
+            BackgroundImageView()
+//            Image("LandsEnd")
+//                .resizable()
+//                .scaledToFill()
+//                .ignoresSafeArea()
             FocusView()
         }
     }

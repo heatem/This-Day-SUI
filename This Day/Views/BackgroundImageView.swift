@@ -16,36 +16,38 @@ struct BackgroundImageView: View {
                 Image(uiImage: uiImage)
                     .resizable()
                     .scaledToFill()
+                    .frame(width: UIScreen.main.bounds.size.width)
+                    .clipped()
                     .edgesIgnoringSafeArea(.all)
-                    .transition(.opacity)
+//                    .transition(.opacity)
             } else {
                 Image("LandsEnd")
                     .resizable()
                     .scaledToFill()
+                    .frame(width: UIScreen.main.bounds.size.width)
+                    .clipped()
                     .edgesIgnoringSafeArea(.all)
-                    .transition(.opacity)
+//                    .transition(.opacity)
             }
-            
-            if !viewModel.photographerName.isEmpty {
-                HStack(spacing: 4) {
-                    Text("Photo by")
-                        .font(.caption)
-                        .foregroundColor(.white.opacity(0.7))
-                    Button(viewModel.photographerName) {
-                        if let url = URL(string: viewModel.photographerURL) {
-                            UIApplication.shared.open(url)
-                        }
+
+//            if !viewModel.photographerName.isEmpty {
+                Button {
+                    if let url = URL(string: viewModel.photographerURL) {
+                        UIApplication.shared.open(url)
                     }
-                    .font(.caption)
-                    .foregroundColor(.white)
-                    .underline()
+                } label: {
+                    HStack {
+                        Text("\(Image(systemName: "camera.fill"))")
+                        Text("\(viewModel.photographerName.count > 0 ? viewModel.photographerName + " / " : "")Unsplash")
+                            .underline()
+                    }
+                    .foregroundColor(.white.opacity(0.7))
+                    .padding(10)
                 }
-                .padding(10)
-                .background(Color.black.opacity(0.4))
+                .background(Color.black.opacity(0.5))
                 .cornerRadius(8)
-                .padding()
             }
-        }
+//        }
     }
 }
 
