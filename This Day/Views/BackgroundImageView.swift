@@ -11,43 +11,42 @@ struct BackgroundImageView: View {
     @StateObject private var viewModel = ImageViewModel()
     
     var body: some View {
-        ZStack(alignment: .bottomLeading) {
-            if let uiImage = viewModel.image {
+        if let uiImage = viewModel.image {
+            ZStack(alignment: .bottomLeading) {
                 Image(uiImage: uiImage)
                     .resizable()
                     .scaledToFill()
                     .frame(width: UIScreen.main.bounds.size.width)
                     .clipped()
                     .edgesIgnoringSafeArea(.all)
-//                    .transition(.opacity)
-            } else {
-                Image("LandsEnd")
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: UIScreen.main.bounds.size.width)
-                    .clipped()
-                    .edgesIgnoringSafeArea(.all)
-//                    .transition(.opacity)
-            }
-
-//            if !viewModel.photographerName.isEmpty {
+                
                 Button {
-                    if let url = URL(string: viewModel.photographerURL) {
+                    if let url = URL(string: viewModel.imageUrl) {
                         UIApplication.shared.open(url)
                     }
                 } label: {
-                    HStack {
-                        Text("\(Image(systemName: "camera.fill"))")
-                        Text("\(viewModel.photographerName.count > 0 ? viewModel.photographerName + " / " : "")Unsplash")
-                            .underline()
+                    VStack {
+                        HStack {
+                            Text("\(Image(systemName: "camera.fill"))")
+                            Text("\(viewModel.photographerName.count > 0 ? viewModel.photographerName + " / " : "")Unsplash")
+                                .underline()
+                        }
+                        .foregroundColor(.white.opacity(0.7))
+                        .padding(8)
                     }
-                    .foregroundColor(.white.opacity(0.7))
-                    .padding(10)
+                    .background(Color.black.opacity(0.4))
+                    .cornerRadius(8)
+                    .padding(.leading)
                 }
-                .background(Color.black.opacity(0.5))
-                .cornerRadius(8)
             }
-//        }
+        } else {
+            Image("LandsEnd")
+                .resizable()
+                .scaledToFill()
+                .frame(width: UIScreen.main.bounds.size.width)
+                .clipped()
+                .edgesIgnoringSafeArea(.all)
+        }
     }
 }
 
