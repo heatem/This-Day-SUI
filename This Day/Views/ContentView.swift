@@ -11,10 +11,6 @@ struct ContentView: View {
     var body: some View {
         ZStack {
             BackgroundImageView()
-//            Image("LandsEnd")
-//                .resizable()
-//                .scaledToFill()
-//                .ignoresSafeArea()
             FocusView()
         }
     }
