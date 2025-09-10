@@ -20,24 +20,50 @@ struct BackgroundImageView: View {
                     .clipped()
                     .edgesIgnoringSafeArea(.all)
                 
-                Button {
-                    if let url = URL(string: viewModel.imageUrl) {
-                        UIApplication.shared.open(url)
-                    }
-                } label: {
-                    VStack {
-                        HStack {
-                            Text("\(Image(systemName: "camera.fill"))")
-                            Text("\(viewModel.photographerName.count > 0 ? viewModel.photographerName + " / " : "")Unsplash")
-                                .underline()
+                HStack {
+                    let referralSuffix = "?utm_source=This_Day&utm_medium=referral"
+                    
+                    // Picture link:
+                    Button {
+                        if let photoUrl = URL(string: "\(viewModel.photoUrl)\(referralSuffix)") {
+                            UIApplication.shared.open(photoUrl)
                         }
-                        .foregroundColor(.white.opacity(0.7))
-                        .padding(8)
+                    } label: {
+                        Text("Photo")
+                            .underline()
                     }
-                    .background(Color.black.opacity(0.4))
-                    .cornerRadius(8)
-                    .padding(.leading)
+                    .padding(8)
+                    
+                    Text("by")
+                    
+                    // Photographer profile link
+                    Button {
+                        if let photogProfileUrl = URL(string: "\(viewModel.profileUrl)\(referralSuffix)") {
+                            UIApplication.shared.open(photogProfileUrl)
+                        }
+                    } label: {
+                        Text(viewModel.photographerName)
+                            .underline()
+                    }
+                    .padding(8)
+                    
+                    Text("on")
+                    
+                    // Unsplash link
+                    Button {
+                        if let unsplashUrl = URL(string: "https://unsplash.com/\(referralSuffix)") {
+                            UIApplication.shared.open(unsplashUrl)
+                        }
+                    } label: {
+                        Text("Unsplash")
+                            .underline()
+                    }
+                    .padding(8)
                 }
+                .foregroundColor(.white)
+                .background(Color.black.opacity(0.5))
+                .cornerRadius(8)
+                .padding(.leading)
             }
         } else {
             Image("LandsEnd")
